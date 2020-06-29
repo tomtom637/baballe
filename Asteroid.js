@@ -107,7 +107,7 @@ class Asteroid {
     // collision logic
     if (this.collision) {
       if (
-        (spaceship.xSpeed > 0 && centerX < spaceshipCenterX) ||
+        (spaceship.xSpeed >= 0 && centerX < spaceshipCenterX) ||
         (spaceship.xSpeed < 0 && centerX > spaceshipCenterX)
       ) {
         this.xSpeed *= 0.9;
@@ -116,7 +116,7 @@ class Asteroid {
         spaceship.xSpeed += this.xSpeed * 0.3;
       }
       if (
-        (spaceship.xSpeed > 0 && centerX > spaceshipCenterX) ||
+        (spaceship.xSpeed >= 0 && centerX > spaceshipCenterX) ||
         (spaceship.xSpeed < 0 && centerX < spaceshipCenterX)
       ) {
         this.xSpeed *= 0.9;
@@ -125,7 +125,7 @@ class Asteroid {
         spaceship.xSpeed -= this.xSpeed * 0.3;
       }
       if (
-        (spaceship.ySpeed > 0 && centerY < spaceshipCenterY) ||
+        (spaceship.ySpeed >= 0 && centerY < spaceshipCenterY) ||
         (spaceship.ySpeed < 0 && centerY > spaceshipCenterY)
       ) {
         this.ySpeed *= 0.9;
@@ -134,7 +134,7 @@ class Asteroid {
         spaceship.ySpeed += this.ySpeed * 0.3;
       }
       if (
-        (spaceship.ySpeed > 0 && centerY > spaceshipCenterY) ||
+        (spaceship.ySpeed >= 0 && centerY > spaceshipCenterY) ||
         (spaceship.ySpeed < 0 && centerY < spaceshipCenterY)
       ) {
         this.ySpeed *= 0.9;
