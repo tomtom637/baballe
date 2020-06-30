@@ -77,33 +77,26 @@ class Asteroid {
     const spaceshipCenterY = spaceship.posY + spaceship.height / 2;
     const centerX = this.posX + this.radius;
     const centerY = this.posY + this.radius;
-    let posXCrossing = false;
-    let posYCrossing = false;
-    if (
-      (spaceshipCenterX < centerX &&
-        centerX - spaceshipCenterX < spaceship.width / 2) ||
-      (spaceshipCenterX > centerX &&
-        spaceshipCenterX - centerX < spaceship.width / 2)
-    ) {
-      posXCrossing = true;
+    let a;
+    let b;
+
+    if (spaceshipCenterX > centerX) {
+      a = spaceshipCenterX - centerX;
     } else {
-      posXCrossing = false;
+      a = centerX - spaceshipCenterX;
     }
-    if (
-      (spaceshipCenterY < centerY &&
-        centerY - spaceshipCenterY < spaceship.height / 2) ||
-      (spaceshipCenterY > centerY &&
-        spaceshipCenterY - centerY < spaceship.height / 2)
-    ) {
-      posYCrossing = true;
+    if (spaceshipCenterY > centerY) {
+      b = spaceshipCenterY - centerY;
     } else {
-      posYCrossing = false;
+      b = centerY - spaceshipCenterY;
     }
-    if (posXCrossing && posYCrossing) {
+
+    if (Math.sqrt(a ** 2 + b ** 2) <= spaceship.width / 2) {
       this.collision = true;
     } else {
       this.collision = false;
     }
+
     // collision logic
     if (this.collision) {
       if (
