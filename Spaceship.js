@@ -4,8 +4,8 @@ class Spaceship {
     this.posY = posY;
     this.width = width;
     this.height = height;
-    this.xSpeed = 5;
-    this.ySpeed = 5;
+    this.xSpeed = 2;
+    this.ySpeed = -3;
     this.rotated = 0;
     this.rotationSpeed = 0;
     this.caught = false;
@@ -31,6 +31,7 @@ class Spaceship {
     this.posX += this.xSpeed;
     this.posY += this.ySpeed;
 
+    /*
     if (this.posX + this.width >= canvas.width) {
       if (this.xSpeed > 0) this.xSpeed = -this.xSpeed;
       this.xSpeed -= this.xSpeed * 0.1;
@@ -73,6 +74,30 @@ class Spaceship {
         this.rotationSpeed -= (Math.PI / 700) * this.xSpeed;
       } else {
         this.rotationSpeed += -((Math.PI / 700) * this.xSpeed);
+      }
+    }
+    */
+    // blackhole attraction
+    if (!this.caught) {
+      if (this.posX + this.width / 2 > blackhole.posX + blackhole.radius) {
+        this.xSpeed -=
+          (this.posX + this.width / 2 - (blackhole.posX + blackhole.radius)) /
+          1000; // 0.02
+      }
+      if (this.posX + this.width / 2 < blackhole.posX + blackhole.radius) {
+        this.xSpeed +=
+          (blackhole.posX + blackhole.radius - (this.posX + this.width / 2)) /
+          1000; // 0.02
+      }
+      if (this.posY + this.height / 2 > blackhole.posY + blackhole.radius) {
+        this.ySpeed -=
+          (this.posY + this.height / 2 - (blackhole.posY + blackhole.radius)) /
+          1000; // 0.02
+      }
+      if (this.posY + this.height / 2 < blackhole.posY + blackhole.radius) {
+        this.ySpeed +=
+          (blackhole.posY + blackhole.radius - (this.posY + this.height / 2)) /
+          1000; // 0.02
       }
     }
     this.lastMoves = [

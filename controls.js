@@ -53,11 +53,13 @@ function handleMouseUp(e) {
     // on thrown
     if (spaceship.thrown) {
       spaceship.xSpeed =
-        spaceship.lastMoves[0].posX -
-        spaceship.lastMoves[spaceship.lastMoves.length - 1].posX;
+        (spaceship.lastMoves[0].posX -
+          spaceship.lastMoves[spaceship.lastMoves.length - 1].posX) /
+        5;
       spaceship.ySpeed =
-        spaceship.lastMoves[0].posY -
-        spaceship.lastMoves[spaceship.lastMoves.length - 1].posY;
+        (spaceship.lastMoves[0].posY -
+          spaceship.lastMoves[spaceship.lastMoves.length - 1].posY) /
+        5;
       if (spaceship.posX < 0) {
         spaceship.posX = 0;
       }

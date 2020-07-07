@@ -14,7 +14,27 @@ asteroidImg.src = 'asteroid.png';
 const blastImg = new Image();
 blastImg.src = 'blast.png';
 
-const blastAnimation = [0, 0, 50, 50, 100, 100, 100, 150, 150, 150, 150];
+const blackholeImg = new Image();
+blackholeImg.src = 'blackhole.png';
+
+const blastAnimation = [
+  0,
+  0,
+  0,
+  50,
+  50,
+  50,
+  50,
+  100,
+  100,
+  100,
+  100,
+  100,
+  150,
+  150,
+  150,
+  150,
+];
 let blastAnimCounter = 0;
 
 canvas.width = 350;
@@ -23,41 +43,28 @@ canvas.height = 350;
 let spaceship = new Spaceship({
   posX: 60,
   posY: 60,
-  width: 65,
-  height: 50,
+  width: 30,
+  height: 27,
 });
 
 let asteroid = new Asteroid({
   posX: 200,
   posY: 200,
-  radius: 12,
+  radius: 7,
 });
 
-function renderBlastAnimation() {
-  if (blastAnimCounter <= 10) {
-    context.drawImage(
-      blastImg,
-      blastAnimation[blastAnimCounter],
-      0,
-      50,
-      60,
-      spaceship.posX,
-      spaceship.posY,
-      60,
-      60
-    );
-    blastAnimCounter++;
-  }
-}
+let blackhole = new Blackhole({
+  posX: canvas.width / 2,
+  posY: canvas.width / 2,
+  radius: 60,
+});
 
 function loop() {
   context.drawImage(background, 0, 0, canvas.width, canvas.height);
   spaceship.update();
   asteroid.update();
-  //if (asteroid.collision && blastAnimCounter === 11) {
-  //blastAnimCounter = 0;
-  //}
-  //renderBlastAnimation();
+  blackhole.update();
+
   requestAnimationFrame(loop);
 }
 
