@@ -43,8 +43,8 @@ canvas.height = 350;
 let spaceship = new Spaceship({
   posX: 60,
   posY: 60,
-  width: 30,
-  height: 27,
+  width: 28,
+  height: 25,
 });
 
 let asteroid = new Asteroid({
@@ -56,13 +56,13 @@ let asteroid = new Asteroid({
 let blackhole = new Blackhole({
   posX: canvas.width / 2,
   posY: canvas.width / 2,
-  radius: 60,
+  radius: 30,
 });
 
 function loop() {
   context.drawImage(background, 0, 0, canvas.width, canvas.height);
   spaceship.update();
-  asteroid.update();
+  // asteroid.update();
   blackhole.update();
 
   requestAnimationFrame(loop);

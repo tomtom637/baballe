@@ -5,7 +5,7 @@ class Spaceship {
     this.width = width;
     this.height = height;
     this.xSpeed = 2;
-    this.ySpeed = -3;
+    this.ySpeed = -2;
     this.rotated = 0;
     this.rotationSpeed = 0;
     this.caught = false;
@@ -77,27 +77,42 @@ class Spaceship {
       }
     }
     */
+    // calculating distance to blackhole
+    const blackholeCenterX = blackhole.posX + blackhole.radius;
+    const blackholeCenterY = blackhole.posY + blackhole.radius;
+    const centerX = this.posX + this.width / 2;
+    const centerY = this.posY + this.height / 2;
+    let a;
+    let b;
+
+    if (blackholeCenterX > centerX) {
+      a = blackholeCenterX - centerX;
+    } else {
+      a = centerX - blackholeCenterX;
+    }
+    if (blackholeCenterY > centerY) {
+      b = blackholeCenterY - centerY;
+    } else {
+      b = centerY - blackholeCenterY;
+    }
+    const distanceToBlackhole = Math.sqrt(a ** 2 + b ** 2);
     // blackhole attraction
     if (!this.caught) {
-      if (this.posX + this.width / 2 > blackhole.posX + blackhole.radius) {
+      if (centerX > blackholeCenterX) {
         this.xSpeed -=
-          (this.posX + this.width / 2 - (blackhole.posX + blackhole.radius)) /
-          1000; // 0.02
+          ((centerX - blackholeCenterX) * 20) / distanceToBlackhole ** 2;
       }
-      if (this.posX + this.width / 2 < blackhole.posX + blackhole.radius) {
+      if (centerX < blackholeCenterX) {
         this.xSpeed +=
-          (blackhole.posX + blackhole.radius - (this.posX + this.width / 2)) /
-          1000; // 0.02
+          ((blackholeCenterX - centerX) * 20) / distanceToBlackhole ** 2;
       }
-      if (this.posY + this.height / 2 > blackhole.posY + blackhole.radius) {
+      if (centerY > blackholeCenterY) {
         this.ySpeed -=
-          (this.posY + this.height / 2 - (blackhole.posY + blackhole.radius)) /
-          1000; // 0.02
+          ((centerY - blackholeCenterY) * 20) / distanceToBlackhole ** 2;
       }
-      if (this.posY + this.height / 2 < blackhole.posY + blackhole.radius) {
+      if (centerY < blackholeCenterY) {
         this.ySpeed +=
-          (blackhole.posY + blackhole.radius - (this.posY + this.height / 2)) /
-          1000; // 0.02
+          ((blackholeCenterY - centerY) * 20) / distanceToBlackhole ** 2;
       }
     }
     this.lastMoves = [

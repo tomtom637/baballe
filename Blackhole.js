@@ -4,7 +4,7 @@ class Blackhole {
     this.posY = posY;
     this.radius = radius;
     this.rotated = 0;
-    this.rotationSpeed = (Math.PI / 700) * 10;
+    this.rotationSpeed = -(Math.PI / 700) * 10;
     this.collision = false;
   }
   draw() {
